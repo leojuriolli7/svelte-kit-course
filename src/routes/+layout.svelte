@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	export let data;
 
@@ -20,18 +19,9 @@
 	{/if}
 
 	{#if !!data.user}
-		<button
-			on:click={async () => {
-				const res = await fetch('/api/logout', {
-					method: 'POST'
-				});
-
-				if (res.ok) {
-					invalidateAll();
-				}
-			}}
-			>Logout
-		</button>
+		<form action="/login?/logout" method="POST">
+			<button type="submit">Logout</button>
+		</form>
 	{/if}
 </nav>
 

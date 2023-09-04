@@ -44,7 +44,3 @@ export const load = async ({ params: { id }, fetch }) => {
 
 	throw error(response.status, response.statusText);
 };
-
-// if `crawl` found the page, it will pre-render,
-// else it will SSR
-export const prerender = 'auto';
