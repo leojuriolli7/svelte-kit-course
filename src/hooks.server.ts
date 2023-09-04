@@ -22,3 +22,12 @@ export const handleFetch = ({ request, event, fetch }) => {
 		return fetch(request);
 	}
 };
+
+export const handleError = ({ error, event }) => {
+	console.log('error, event:', error, event);
+	return {
+		// this will be the error message
+		message: 'An unexpected error occurred',
+		code: 'INTERNAL_ERROR'
+	};
+};
