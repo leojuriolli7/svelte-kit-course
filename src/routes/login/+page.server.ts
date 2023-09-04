@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 
 export const actions = {
-	login: async ({ request, cookies, url }) => {
+	login: async ({ request, cookies, url, locals }) => {
 		const form = await request.formData();
 		const username = form.get('username');
 		const password = form.get('password');
@@ -20,12 +20,17 @@ export const actions = {
 
 		const routeToRedirect = url.searchParams.get('redirectTo') || '/';
 
+		// it is not guaranteed that when this action runs,
+		// the handle hook will be called or not
+		locals.user = { name: 'John', id: 1 };
+
 		throw redirect(303, routeToRedirect);
 	},
-	logout: ({ cookies, url }) => {
+	logout: ({ cookies, url, locals }) => {
 		const routeToRedirect = url.searchParams.get('redirectTo') || '/';
 		cookies.delete('token', { path: '/' });
 
+		locals.user = null;
 		throw redirect(303, routeToRedirect);
 	}
 };
