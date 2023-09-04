@@ -12,15 +12,12 @@ export const handle = async ({ event, resolve }) => {
 
 export const handleFetch = ({ request, event, fetch }) => {
 	if (request.url.startsWith('https://dummyjson.com/')) {
-		const { cookies } = event;
-		const cookie = cookies.get('cookie');
-
+		const cookie = event.request.headers.get('cookie');
 		if (cookie) {
-			request.headers.set('New Header', cookie);
+			request.headers.set('cookie', cookie);
 		}
-
-		return fetch(request);
 	}
+	return fetch(request);
 };
 
 export const handleError = ({ error, event }) => {
