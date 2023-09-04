@@ -11,12 +11,13 @@ export const GET = async ({ fetch }) => {
 	throw error(response.status, response.statusText);
 };
 
-export const POST = async ({ request }) => {
-	const product = await request.json();
+// POST requests cannot be pre-rendered
+// export const POST = async ({ request }) => {
+// 	const product = await request.json();
 
-	if (!product.title) {
-		throw error(400, 'Product title is required');
-	}
+// 	if (!product.title) {
+// 		throw error(400, 'Product title is required');
+// 	}
 
-	return json({ id: 999, title: product.title });
-};
+// 	return json({ id: 999, title: product.title });
+// };

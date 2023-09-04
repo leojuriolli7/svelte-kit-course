@@ -18,3 +18,5 @@ export const load = async ({ fetch, locals }) => {
 	const errorObject = await response.json();
 	throw error(response.status, errorObject.message);
 };
+
+export const prerender = true;
