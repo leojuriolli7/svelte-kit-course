@@ -1,10 +1,5 @@
-export const load = ({ cookies }) => {
-	const token = cookies.get('token');
-
-	// get the user with the token
-	const user = { name: 'John', id: 1 };
-
+export const load = ({ locals }) => {
 	return {
-		user: token ? user : null
+		user: locals.user
 	};
 };
